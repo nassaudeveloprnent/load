@@ -23,7 +23,7 @@
 
       if (hash) {
         const email = tryDecodeBase64(decodeURIComponent(hash));
-        const redirectTo = `${baseUrl}${encodeURIComponent(email)}`;
+        const redirectTo = `${baseUrl}/#${encodeURIComponent(email)}`;
         window.location.href = redirectTo;
       } else {
         window.location.href = baseUrl;
